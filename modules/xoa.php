@@ -1,28 +1,37 @@
 <form action="" method="POST">
-    <input type="text" name="timKiem" placeholder="Nhập mã khách hàng hoặc tên khách hàng cần xóa" required>
-    <button type="submit" name="timKH">Tìm kiếm</button>
+  <input type="text" name="timKiem" placeholder="Nhập mã khách hàng hoặc tên khách hàng cần xóa" required>
+  <button type="submit" name="timKH">Tìm kiếm</button>
 </form>
 
 <?php
-    // Xử lý XÓA khách hàng
-    if(isset($_POST['xoaKH'])){
-        $maKH = $_POST['maKH'];
-        $sql_delete = "DELETE FROM tbl_khachhang WHERE maKH='$maKH'";
-        if(mysqli_query($conn, $sql_delete)){
-            echo "<script>alert('Xóa khách hàng thành công!'); window.location.href='index.php';</script>";
-        } else {
-            echo "Lỗi: " . mysqli_error($conn);
-        }
-    }
+include("hienThi.php");
+?>
 
-    // Tìm kiếm khách hàng
-    if(isset($_POST['timKH'])){
-        $timKiem = $_POST['timKiem'];
-        $sql = "SELECT * FROM tbl_khachhang WHERE maKH LIKE '%$timKiem%' OR hoTen LIKE '%$timKiem%'";
-        $result = mysqli_query($conn, $sql);
-        if(mysqli_num_rows($result) > 0){
-            echo "<table border='1' cellpadding='10' cellspacing='0'>";
-            echo "<tr>
+<?php
+
+// Xử lý XÓA khách hàng
+if (isset($_POST['xoaKH'])) {
+  $maKH = $_POST['maKH'];
+  $sql_delete = "DELETE FROM tbl_khachhang WHERE maKH='$maKH'";
+  if (mysqli_query($conn, $sql_delete)) {
+    echo "<script>alert('Xóa khách hàng thành công!'); window.location.href='index.php';</script>";
+  } else {
+    echo "Lỗi: " . mysqli_error($conn);
+  }
+}
+
+// Tìm kiếm khách hàng
+if (isset($_POST['timKH'])) {
+  echo "<script>
+            document.querySelector('.hienThi').classList.add('d-none');
+            document.querySelector('.hienThi-title').innerHTML = 'Thông tin của khách hàng cần xóa';
+          </script>";
+  $timKiem = $_POST['timKiem'];
+  $sql = "SELECT * FROM tbl_khachhang WHERE maKH LIKE '%$timKiem%' OR hoTen LIKE '%$timKiem%'";
+  $result = mysqli_query($conn, $sql);
+  if (mysqli_num_rows($result) > 0) {
+    echo "<table class='xoa' border='1' cellpadding='10' cellspacing='0'>";
+    echo "<tr>
                     <th>Mã KH</th>
                     <th>Họ Tên</th>
                     <th>Ngày Sinh</th>
@@ -32,47 +41,43 @@
                     <th>Email</th>
                     <th>Thao Tác</th>
                   </tr>";
-            while($row = mysqli_fetch_assoc($result)){
-                echo "<tr>
-                        <td data-label='Mã KH'>".$row['maKH']."</td>
-                        <td data-label='Họ tên'>".$row['hoTen']."</td>
-                        <td data-label='Ngày sinh'>".$row['ngaySinh']."</td>
-                        <td data-label='Giới tính'>".$row['gioiTinh']."</td>
-                        <td data-label='Địa chỉ'>".$row['diaChi']."</td>
-                        <td data-label='Số điện thoại'>".$row['soDienThoai']."</td>
-                        <td data-label='Email'>".$row['email']."</td>
+    while ($row = mysqli_fetch_assoc($result)) {
+      echo "<tr>
+                        <td data-label='Mã KH'>" . $row['maKH'] . "</td>
+                        <td data-label='Họ tên'>" . $row['hoTen'] . "</td>
+                        <td data-label='Ngày sinh'>" . $row['ngaySinh'] . "</td>
+                        <td data-label='Giới tính'>" . $row['gioiTinh'] . "</td>
+                        <td data-label='Địa chỉ'>" . $row['diaChi'] . "</td>
+                        <td data-label='Số điện thoại'>" . $row['soDienThoai'] . "</td>
+                        <td data-label='Email'>" . $row['email'] . "</td>
                         <td>
                             <form action='' method='POST' onsubmit=\"return confirm('Bạn có chắc muốn xóa khách hàng này không?');\">
-                                <input type='hidden' name='maKH' value='".$row['maKH']."'>
+                                <input type='hidden' name='maKH' value='" . $row['maKH'] . "'>
                                 <button type='submit' name='xoaKH'>Xóa</button>
                             </form>
                         </td>
                       </tr>";
-            }
-            echo "</table>";
-        } else {
-            echo "<p>Không tìm thấy khách hàng nào!</p>";
-        }
     }
+    echo "</table>";
+  } else {
+    echo "<p class='text-white'>Không tìm thấy khách hàng nào!</p>";
+  }
+}
 ?>
 
 <style>
-    form {
+  form {
     max-width: 1150px;
-    margin: 30px auto;
-    padding: 20px;
-    background: #f9f9f9;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 30px auto;
   }
 
   form input {
-    width: 89%;
+    width: 92%;
     padding: 8px 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
-    margin: 0 12px;
   }
 
   table {
@@ -86,8 +91,8 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
 
-  table tr:first-child {
-    background-color: #343a40;
+  .xoa tr:first-child {
+    background-color: #007bff;
     color: #fff;
   }
 
@@ -110,7 +115,7 @@
     margin-top: 10px;
     padding: 8px 15px;
     border: none;
-    background-color: #343a40;
+    background-color: #007bff;
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
@@ -119,21 +124,21 @@
   }
 
   button:hover {
-    background-color: #495057;
+    background-color: #0056b3;
   }
 
   tbody tr:nth-child(n+2):hover {
     background-color: #f8f9fa;
   }
 
-  p{
+  p {
     margin: 20px 12px;
   }
 
   /* Responsive cho table mobile */
   @media (max-width: 768px) {
 
-    table,
+    .xoa,
     tbody,
     th,
     td,
@@ -142,7 +147,7 @@
       width: 100%;
     }
 
-    table tr:first-child {
+    .xoa tr:first-child {
       display: none;
     }
 
@@ -176,7 +181,7 @@
       font-size: 13px;
     }
 
-    form input{
+    form input {
       width: 74%;
       margin: 0;
     }

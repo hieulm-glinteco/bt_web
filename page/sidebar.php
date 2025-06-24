@@ -7,3 +7,15 @@
     <a href="index.php?query=timKiem"><i class="fa-solid fa-magnifying-glass me-2"></i>Tìm kiếm</a>
     <a href="index.php?query=thongKe"><i class="fa-solid fa-chart-bar me-2"></i>Thống kê</a>
 </nav>
+
+<script>
+    const links = [...document.querySelectorAll('#sidebar a')];
+    console.log(links);
+    links.forEach(element => {
+        element.addEventListener("click", function(){
+            links.forEach(item => item.classList.remove('link-active'));
+            element.classList.add('link-active');
+        })
+        
+    })
+</script>

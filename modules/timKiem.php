@@ -4,12 +4,20 @@
 </form>
 
 <?php
+  include("hienThi.php");
+?>
+
+<?php
   if(isset($_POST['timKiem'])){
+    echo "<script>
+            document.querySelector('.hienThi').classList.add('d-none');
+            document.querySelector('.hienThi-title').innerHTML = 'Thông tin của khách hàng cần tìm kiếm';
+          </script>";
     $timKiem = $_POST['timKiem'];
     $sql = "SELECT * FROM tbl_khachhang WHERE maKH LIKE '%$timKiem%' OR hoTen LIKE '%$timKiem%'";
     $result = mysqli_query($conn, $sql);
     if(mysqli_num_rows($result) > 0){
-        echo "<table border='1' cellpadding='10' cellspacing='0'>";
+        echo "<table class='timKiem' border='1' cellpadding='10' cellspacing='0'>";
         echo "<tr>
                 <th>Mã KH</th>
                 <th>Họ Tên</th>
@@ -34,31 +42,27 @@
         }
         echo "</table>";
     } else {
-        echo "<p>Không tìm thấy khách hàng nào!</p>";
+        echo "<p class='text-white'>Không tìm thấy khách hàng nào!</p>";
     }
   }
 ?>
 
 <style>
-    form {
+  form {
     max-width: 1150px;
-    margin: 30px auto;
-    padding: 20px;
-    background: #f9f9f9;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 30px auto;
   }
 
   form input {
-    width: 89%;
+    width: 92%;
     padding: 8px 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 14px;
-    margin: 0 12px;
   }
 
-  table {
+  .timKiem {
     max-width: 1150px;
     margin: 20px auto;
     width: 100%;
@@ -69,8 +73,8 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
 
-  table tr:first-child {
-    background-color: #343a40;
+  .timKiem tr:first-child {
+    background-color: #007bff;
     color: #fff;
   }
 
@@ -93,7 +97,7 @@
     margin-top: 10px;
     padding: 8px 15px;
     border: none;
-    background-color: #343a40;
+    background-color: #007bff;
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
@@ -102,7 +106,7 @@
   }
 
   button:hover {
-    background-color: #495057;
+    background-color: #0056b3;
   }
 
   tbody tr:nth-child(n+2):hover {
@@ -116,7 +120,7 @@
   /* Responsive cho table mobile */
   @media (max-width: 768px) {
 
-    table,
+    .timKiem,
     tbody,
     th,
     td,
@@ -125,7 +129,7 @@
       width: 100%;
     }
 
-    table tr:first-child {
+    .timKiem tr:first-child {
       display: none;
     }
 

@@ -3,9 +3,9 @@ $sql = "SELECT * FROM tbl_khachhang";
 $result = mysqli_query($conn, $sql);
 ?>
 
-<p>Thông tin toàn bộ khách hàng</p>
+<p class="text-white hienThi-title">Thông tin toàn bộ khách hàng</p>
 
-<table>
+<table class="hienThi">
     <thead>
         <tr>
             <th>Số thứ tự</th>
@@ -40,8 +40,10 @@ $result = mysqli_query($conn, $sql);
     </tbody>
 </table>
 
+<a href="xuatFile.php" class="btn btn-success">Xuất file CSV</a>
+
 <style>
-    table {
+    .hienThi {
         width: 100%;
         border-collapse: collapse;
         background-color: #fff;
@@ -51,7 +53,7 @@ $result = mysqli_query($conn, $sql);
     }
 
     thead {
-        background-color: #343a40;
+        background-color:  #007bff;
         color: #fff;
     }
 
@@ -67,11 +69,11 @@ $result = mysqli_query($conn, $sql);
 
     /* Responsive */
     @media (max-width: 768px) {
-        table{
+        .hienThi{
             background-color: #f8f9fa;
             box-shadow: none;
         }
-        table, thead, tbody, th, td, tr {
+        .hienThi, thead, tbody, th, td, tr {
             display: block;
         }
 

@@ -16,10 +16,10 @@ toggleBtn.addEventListener('click', (e) => {
 });
 
 // Click overlay => đóng sidebar
-overlay.addEventListener('click', () => {
-    sidebar.classList.remove('show');
-    overlay.classList.remove('show');
-});
+// overlay.addEventListener('click', () => {
+//     sidebar.classList.remove('show');
+//     overlay.classList.remove('show');
+// });
 
 // Click bất kì đâu ngoài sidebar => đóng sidebar mobile
 document.addEventListener('click', (e) => {
@@ -30,3 +30,4 @@ document.addEventListener('click', (e) => {
         }
     }
 });
+

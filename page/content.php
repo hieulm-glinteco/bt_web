@@ -1,10 +1,10 @@
-<div id="main-content" class="content">
-    <nav class="navbar navbar-light bg-light mb-4">
+<div id="main-content" class="content position-relative">
+    <nav class="navbar navbar-light mb-4">
         <div class="container-fluid">
-            <button class="btn btn-dark" id="toggleSidebar">
+            <button class="btn text-white" id="toggleSidebar">
                 <i class="fa-solid fa-bars"></i>
             </button>
-            <span class="navbar-brand ms-3">Welcome Admin</span>
+            <span class="navbar-brand ms-3 text-white">Welcome Admin</span>
         </div>
     </nav>
 
@@ -36,7 +36,12 @@
             include 'modules/thongKe.php';
             break;
         default:
-            echo "<h3 class='home-title text-center mt-3'>Chào mừng đến với trang quản lý khách hàng</h3>";
+            echo "<h3 class='home-title text-center mt-3 text-white'>Chào mừng đến với trang quản lý khách hàng</h3>";
     }
     ?>
+    <footer>
+        <div class="text-center text-dark position-absolute">
+            © 2025 - Thiết kế & phát triển bởi YourCompany | All rights reserved.
+        </div>
+    </footer>
 </div>

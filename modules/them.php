@@ -15,7 +15,12 @@
                 <td data-label="Mã KH"><input type="text" name="maKH" placeholder="Mã khách hàng"></td>
                 <td data-label="Họ tên"><input type="text" name="hoTen" placeholder="Họ tên"></td>
                 <td data-label="Ngày sinh"><input type="date" name="ngaySinh"></td>
-                <td data-label="Giới tính"><input type="text" name="gioiTinh" placeholder="Giới tính"></td>
+                <td data-label="Giới tính">
+                    <select name="gioiTinh">
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                    </select>
+                </td>
                 <td data-label="Địa chỉ"><input type="text" name="diaChi" placeholder="Địa chỉ"></td>
                 <td data-label="Số điện thoại"><input type="text" name="soDienThoai" placeholder="Số điện thoại"></td>
                 <td data-label="Email"><input type="email" name="email" placeholder="Email"></td>
@@ -79,7 +84,7 @@ if (isset($_POST['themKH'])) {
     }
 
     thead {
-        background-color: #343a40;
+        background-color: #007bff;
         color: #fff;
     }
 
@@ -90,18 +95,25 @@ if (isset($_POST['themKH'])) {
         border-bottom: 1px solid #ddd;
     }
 
-    input {
+    input{
         width: 100%;
         padding: 8px 10px;
         border: 1px solid #ccc;
         border-radius: 5px;
     }
 
+    select{
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 8px 0px;
+    }
+
     button {
         margin-top: 15px;
         padding: 10px 20px;
         border: none;
-        background-color: #343a40;
+        background-color: #007bff;
         color: #fff;
         border-radius: 5px;
         cursor: pointer;
@@ -109,7 +121,7 @@ if (isset($_POST['themKH'])) {
     }
 
     button:hover {
-        background-color: #495057;
+        background-color: #0056b3;
     }
 
     tbody tr:hover {
