@@ -35,6 +35,12 @@
         case 'thongKe':
             include 'modules/thongKe.php';
             break;
+        case 'sinhNhat':
+            include 'modules/sinhNhat.php';
+            break;
+        case 'phanLoai':
+            include 'modules/phanLoai.php';
+            break;
         default:
             echo "<h3 class='home-title text-center mt-3 text-white'>Chào mừng đến với trang quản lý khách hàng</h3>";
     }

@@ -6,6 +6,8 @@
     <a href="index.php?query=xoa"><i class="fa-solid fa-user-minus me-2"></i>Xóa</a>
     <a href="index.php?query=timKiem"><i class="fa-solid fa-magnifying-glass me-2"></i>Tìm kiếm</a>
     <a href="index.php?query=thongKe"><i class="fa-solid fa-chart-bar me-2"></i>Thống kê</a>
+    <a href="index.php?query=sinhNhat"><i class="fa-solid fa-chart-bar me-2"></i>Sinh nhật</a>
+    <a href="index.php?query=phanLoai"><i class="fa-solid fa-chart-bar me-2"></i>Phân loại</a>
 </nav>
 
 <script>
